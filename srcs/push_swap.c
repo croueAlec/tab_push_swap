@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/18 21:03:13 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/19 13:41:44 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	tab_print(t_a *tab, size_t len)
 	i = 0;
 	while (i < len)
 	{
-		printf("%d [%zu-%zu]\n", tab[i].value, tab[i].length, tab[i].length_total);
+		printf("%d (%d) [%zu-%zu]\n", tab[i].value, tab[i].rank, tab[i].length, tab[i].length_total);
 		i++;
 	}
 }
@@ -40,27 +40,40 @@ int	main(int argc, char *argv[])
 		return (0);
 	str = ft_strtrim(tmp, " ");
 	list_length = ft_count_words(str, 32);
-	printf("\n|%s|\n|%s|\n|%zu|\n", tmp, str, list_length);
 	free(tmp);
 	a = make_a(str, list_length);
 	b = make_b(list_length);
 	if (!a || !b)
 		return (free(a), free(b), 0);
+	check_rank(a, list_length);
+	move_b(a, b, list_length);
+	tab_print(a, a[0].length);
+	printf("\n\n[\n");
+	tab_print(b, b[0].length);
+	printf("]\n\n");
+	return (free(a), free(b), 0);
+}
+
+/*
 	reverse_rotate(a, list_length, 'a');
 	printf("========================\n");
 	tab_print(a, a[0].length);
 	rotate(a, list_length, 'a');
 	printf("========================\n");
 	tab_print(a, a[0].length);
-	first_push(a, b);
-	printf("========================\n");
-	tab_print(a, a[0].length);
-	printf("-------------------------\n");
-	tab_print(b, b[0].length);
-	printf("-------------------------\n");
+	// first_push(a, b);
 	push(a, b, a[0].length, 'b');
-	tab_print(a, a[0].length);
+	printf("========================\n");
+	tab_print(a, list_length);
 	printf("-------------------------\n");
-	tab_print(b, b[0].length);
-	return (free(a), free(b), 0);
-}
+	tab_print(b, list_length);
+	printf("-------------------------\n");
+	push(a, b, list_length, 'b');
+	tab_print(a, list_length);
+	printf("-------------------------\n");
+	tab_print(b, list_length);
+	// push(b, a, list_length, 0);
+	// push(b, a, list_length, 0);
+	// printf("|||||||||||||||||||||||||||\n");
+	// tab_print(b, list_length);
+*/

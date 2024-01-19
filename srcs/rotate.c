@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 19:51:49 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/18 20:06:09 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/19 12:57:53 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,34 @@
 
 #include <stdio.h>
 
-static void	ft_swap(t_a *src, t_a *dest)
-{
-	t_a	tmp;
-
-	tmp = *src;
-	*src = *dest;
-	*dest = tmp;
-}
-
 void	rotate(t_a *tab, size_t len, char c)
 {
 	size_t	i;
+	t_a		tmp;
+
 	i = 0;
-	// printf("salut\n");
+	tmp = tab[0];
 	while (++i < len)
 	{
-		// printf("\n");
-		// tab_print(tab, len);
-		// printf("\n");
-		ft_swap(&tab[i - 1], &tab[i]);
+		tab[i - 1] = tab[i];
 	}
+	tab[i - 1] = tmp;
 	if (c == 'a' || c == 'b')
 		ft_printf("r%c\n", c);
 }
 
 void	reverse_rotate(t_a *tab, size_t len, char c)
 {
-	// size_t	tmp = len;
-	// printf("salut\n");
-	while (--len > 0)
+	t_a	tmp;
+
+	len--;
+	tmp = tab[len];
+	while (len > 0)
 	{
-		// printf("\n");
-		// tab_print(tab, tmp);
-		// printf("\n");
-		ft_swap(&tab[len], &tab[len - 1]);
+		tab[len] = tab[len - 1];
+		len--;
 	}
+	tab[0] = tmp;
 	if (c == 'a' || c == 'b')
 		ft_printf("rr%c\n", c);
 }

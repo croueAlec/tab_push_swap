@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:20:48 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/18 20:29:32 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/19 13:43:04 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_a	*make_a(char *str, size_t len)
 		tab[i - 1].length = len;
 		str += index;
 	}
-	tab_print(tab, len);
+	// tab_print(tab, len);
 	if (!check_tab(tab, len))
 		return (free(tmp), NULL);
 	return (free(tmp), tab);
