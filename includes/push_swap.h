@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:26:34 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/19 13:25:43 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/19 16:11:54 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_a
 
 /* check_rank.c */
 void	check_rank(t_a *tab, size_t length);
+/* cost.c */
+void	define_cost(t_a *a, t_a *b, size_t len_b);
 /* push_swap.c */
 void	tab_print(t_a *tab, size_t len);
 /* parsing.c */
@@ -58,6 +60,7 @@ int		push(t_a *src, t_a *dest, size_t len, char c);
 void	rotate(t_a *tab, size_t len, char c);
 void	reverse_rotate(t_a *tab, size_t len, char c);
 /* sorting.c */
+void	sort_three(t_a *tab, size_t length);
 void	move_b(t_a *tab, t_a *b, size_t length);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/19 13:41:44 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/19 16:14:50 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,27 @@
 void	tab_print(t_a *tab, size_t len)
 {
 	size_t i;
+
 	i = 0;
 	while (i < len)
 	{
 		printf("%d (%d) [%zu-%zu]\n", tab[i].value, tab[i].rank, tab[i].length, tab[i].length_total);
 		i++;
 	}
+}
+
+void	print_cost(t_a *b, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	printf("|val| ra| rb|rra|rrb| rr|rrr|tot|\n");
+	while (i < len)
+	{
+		printf("|%3d| %zu | %zu | %zu | %zu | %zu | %zu | %zu |\n", b[i].value,  b[i].cost.ra, b[i].cost.rb, b[i].cost.rra, b[i].cost.rrb ,b[i].cost.rr, b[i].cost.rrr, b[i].cost.total);
+		i++;
+	}
+	
 }
 
 int	main(int argc, char *argv[])
@@ -47,10 +62,13 @@ int	main(int argc, char *argv[])
 		return (free(a), free(b), 0);
 	check_rank(a, list_length);
 	move_b(a, b, list_length);
+	sort_three(a, a[0].length);
 	tab_print(a, a[0].length);
-	printf("\n\n[\n");
+	printf("\n[\n");
 	tab_print(b, b[0].length);
 	printf("]\n\n");
+	define_cost(a, b, b[0].length);
+	print_cost(b, b[0].length);
 	return (free(a), free(b), 0);
 }
 
