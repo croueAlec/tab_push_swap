@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:48:57 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/19 18:50:45 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/19 19:25:34 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	a_rotate_cost(t_a *a, int rank, size_t len_a)
 	i = 0;
 	while (a[i].rank < rank && i < len_a)
 	{
-		printf("%d vs %d\n", a[i].rank - 1, rank - 1);
+		printf("%d vs %d\n", a[i].rank, rank);
 		i++;
 	}
 	return (i);
@@ -173,5 +173,5 @@ void	define_cost(t_a *a, t_a *b, size_t len_b)
 		i++;
 	}
 	compare_cost(b, len_b);
-	// compact_rr(b, len_b);
+	compact_rr(b, len_b);
 }

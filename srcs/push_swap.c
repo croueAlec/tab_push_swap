@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/19 19:15:07 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/19 19:39:15 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,10 @@ int	main(int argc, char *argv[])
 	printf("\n[\n");
 	tab_print(b, b[0].length);
 	printf("]\n\n");
-	define_cost(a, b, b[0].length);
-	print_cost(b, b[0].length);
+	// define_cost(a, b, b[0].length);
+	// print_cost(b, b[0].length);
+	apply_cost(a, b, a[0].length, b[0].length);
+	tab_print(a, a[0].length);
 	return (free(a), free(b), 0);
 }
 
