@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/19 16:14:50 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/19 19:15:07 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,24 @@ void	print_cost(t_a *b, size_t len)
 	
 }
 
+int	basic_check(t_a *a, size_t list_length)
+{
+	if (list_length == 1)
+		return (0);
+	if (list_length == 2)
+	{
+		if(a[0].value > a[1].value)
+			swap(a, 'a');
+		return (0);
+	}
+	if (list_length == 3)
+	{
+		sort_three(a, list_length);
+		return (0);
+	}
+	return (1);
+}
+
 int	main(int argc, char *argv[])
 {
 	char	*str;
@@ -58,7 +76,7 @@ int	main(int argc, char *argv[])
 	free(tmp);
 	a = make_a(str, list_length);
 	b = make_b(list_length);
-	if (!a || !b)
+	if (!a || !b || !basic_check(a, list_length))
 		return (free(a), free(b), 0);
 	check_rank(a, list_length);
 	move_b(a, b, list_length);
