@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:48:57 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/22 14:58:09 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/22 16:29:31 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@
 static int	test(t_a *a, int rank, size_t len_a)
 {
 	size_t	i;
+	size_t	j;
 
 	// rank++;
 	i = 0;
-	// printf("\033[0;35m");
-	// tab_print(a, a->len->total);
-	// printf("\033[0m\n");
+	j = 0;
+	a[a->len->a].rank = -1;
+	printf("\033[0;35m");
+	tab_print(a, a->len->total);
+	printf("\033[0m\n");
 	if ((size_t)rank == a->len->total)
 	{
 		printf("\t\t\t\033[0;34m BIGGEST \033[0m");
@@ -48,8 +51,8 @@ static int	test(t_a *a, int rank, size_t len_a)
 		}
 		return (i + 1);
 	}
-	printf("\t\t\t\033[0;34m %d \033[0m", a[i].rank);
-	while (a[i].rank != rank)
+	printf("\t\t\t\033[0;34m %d \n\033[0m", a[i].rank);
+	while (a[i].rank != rank && j < len_a)
 	{
 		rank++;
 		i = 0;
@@ -61,9 +64,46 @@ static int	test(t_a *a, int rank, size_t len_a)
 			i++;
 		}
 		printf("\n");
+		j++;
 	}
 	return (i);
 }
+
+// static int	test_deux(t_a *a, size_t len_a)
+// {
+// 	int	biggest;
+// 	size_t	i;
+// 	size_t	biggest_index;
+
+// 	i = 0;
+// 	biggest = a[0].rank;
+// 	biggest_index = 0;
+// 	while (i < len_a)
+// 	{
+// 		if (a[i].rank > biggest)
+// 		{
+// 			biggest = a[i].rank;
+// 			biggest_index = i;
+// 		}
+// 		i++;
+// 	}
+// 	return (biggest_index);
+// }
+
+// static int	test(t_a *a, int rank, size_t len_a)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	if ((size_t)rank == a->len->total)
+// 		return (test_deux(a, len_a));
+// 	while (a[i].rank < rank && i < len_a)
+// 	{
+// 		i++;
+// 	}
+// 	printf("ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII %zu\n", i);
+// 	return (i);
+// }
 
 static t_cost	diag(t_a *b, t_cost cst)
 {
