@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/22 11:12:25 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/22 14:16:40 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,29 @@ static t_len	*define_len_struct(t_a *a, t_a *b, size_t list_length)
 	return (len);
 }
 
+void	right_side_up(t_a *a, size_t len_a)
+{
+	size_t	i;
+
+	i = 0;
+	while (a[i].rank != 1)
+		i++;
+	if (i > (a->len->total / 2))
+	{
+		while (i--)
+		{
+			rotate(a, len_a, 'a');
+		}
+	}
+	else
+	{
+		while (i--)
+		{
+			reverse_rotate(a, len_a, 'a');
+		}
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	char	*str;
@@ -111,6 +134,7 @@ int	main(int argc, char *argv[])
 	// define_cost(a, b, b[0].length);
 	// print_cost(b, b[0].length);
 	apply_cost(a, b, a[0].len->a, b[0].len->b);
+	right_side_up(a, a->len->a);
 	tab_print(a, a[0].len->a);
 	return (free(a->len), free(a), free(b), 0);
 }

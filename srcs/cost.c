@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:48:57 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/22 10:42:56 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/22 14:58:09 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,53 @@
 
 #include <stdio.h>
 
-static int	a_rotate_cost(t_a *a, int rank, size_t len_a)
+// static int	a_rotate_cost(t_a *a, int rank, size_t len_a)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (a[i].rank < rank && i < len_a)
+// 	{
+// 		printf("%d vs %d\n", a[i].rank, rank);
+// 		i++;
+// 	}
+// 	return (i);
+// }
+
+static int	test(t_a *a, int rank, size_t len_a)
 {
 	size_t	i;
 
+	// rank++;
 	i = 0;
-	while (a[i].rank < rank && i < len_a)
+	// printf("\033[0;35m");
+	// tab_print(a, a->len->total);
+	// printf("\033[0m\n");
+	if ((size_t)rank == a->len->total)
 	{
-		printf("%d vs %d\n", a[i].rank, rank);
-		i++;
+		printf("\t\t\t\033[0;34m BIGGEST \033[0m");
+		while (a[i].rank != rank)
+		{
+			rank--;
+			i = 0;
+			while (a[i].rank != rank && i < len_a)
+				i++;
+		}
+		return (i + 1);
+	}
+	printf("\t\t\t\033[0;34m %d \033[0m", a[i].rank);
+	while (a[i].rank != rank)
+	{
+		rank++;
+		i = 0;
+		while (a[i].rank != rank && i < len_a)
+		{
+			printf("\033[0;35m");
+			printf("%d vs %d\n", a[i].rank, rank);
+			printf("\033[0m");
+			i++;
+		}
+		printf("\n");
 	}
 	return (i);
 }
@@ -144,12 +182,14 @@ void	compact_rr(t_a *b, size_t len_b)
 	{
 		while (b[i].cost.ra && b[i].cost.rb)
 		{
+			printf("\033[1;32m%d compact rr\033[0m\n", b[i].value);
 			b[i].cost.ra--;
 			b[i].cost.rb--;
 			b[i].cost.rr++;
 		}
 		while (b[i].cost.rra && b[i].cost.rrb)
 		{
+			printf("\033[1;32m%d compact rrr\033[0m\n", b[i].value);
 			b[i].cost.rra--;
 			b[i].cost.rrb--;
 			b[i].cost.rrr++;
@@ -168,8 +208,10 @@ void	define_cost(t_a *a, t_a *b, size_t len_b)
 	{
 		b[i].cost.rb = i;
 		b[i].cost.rrb = len_b - i;
-		b[i].cost.ra = a_rotate_cost(a, b[i].rank, a[0].len->a);
+		b[i].cost.ra = test(a, b[i].rank, a[0].len->a);
 		b[i].cost.rra = a[0].len->a - b[i].cost.ra;
+		b[i].cost.rr = 0;
+		b[i].cost.rrr = 0;
 		i++;
 	}
 	compare_cost(b, len_b);
