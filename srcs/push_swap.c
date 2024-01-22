@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/22 14:16:40 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/22 17:55:23 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ void	tab_print(t_a *tab, size_t len)
 	}
 }
 
-void	print_cost(t_a *b, size_t len)
-{
-	size_t	i;
+// void	print_cost(t_a *b, size_t len)
+// {
+// 	size_t	i;
 
-	i = 0;
-	printf("|val| ra| rb|rra|rrb| rr|rrr|tot|\n");
-	while (i < len)
-	{
-		printf("|%3d| %zu | %zu | %zu | %zu | %zu | %zu | %zu |\n", b[i].value,  b[i].cost.ra, b[i].cost.rb, b[i].cost.rra, b[i].cost.rrb ,b[i].cost.rr, b[i].cost.rrr, b[i].cost.total);
-		i++;
-	}
+// 	i = 0;
+// 	// printf("|val| ra| rb|rra|rrb| rr|rrr|tot|\n");
+// 	while (i < len)
+// 	{
+// 		// printf("|%3d| %zu | %zu | %zu | %zu | %zu | %zu | %zu |\n", b[i].value,  b[i].cost.ra, b[i].cost.rb, b[i].cost.rra, b[i].cost.rrb ,b[i].cost.rr, b[i].cost.rrr, b[i].cost.total);
+// 		i++;
+// 	}
 	
-}
+// }
 
 int	basic_check(t_a *a, size_t list_length)
 {
@@ -55,6 +55,8 @@ int	basic_check(t_a *a, size_t list_length)
 		sort_three(a, list_length);
 		return (0);
 	}
+	if (is_list_sorted(a, list_length))
+		return (0);
 	return (1);
 }
 
@@ -92,14 +94,14 @@ void	right_side_up(t_a *a, size_t len_a)
 	{
 		while (i--)
 		{
-			rotate(a, len_a, 'a');
+			reverse_rotate(a, len_a, 'a');
 		}
 	}
 	else
 	{
 		while (i--)
 		{
-			reverse_rotate(a, len_a, 'a');
+			rotate(a, len_a, 'a');
 		}
 	}
 }
@@ -127,10 +129,10 @@ int	main(int argc, char *argv[])
 	check_rank(a, list_length);
 	move_b(a, b, list_length);
 	sort_three(a, a[0].len->a);
-	tab_print(a, a[0].len->a);
-	printf("\n[\n");
-	tab_print(b, b[0].len->b);
-	printf("]\n\n");
+	// tab_print(a, a[0].len->a);
+	// printf("\n[\n");
+	// tab_print(b, b[0].len->b);
+	// printf("]\n\n");
 	// define_cost(a, b, b[0].length);
 	// print_cost(b, b[0].length);
 	apply_cost(a, b, a[0].len->a, b[0].len->b);

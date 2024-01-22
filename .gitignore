@@ -3,3 +3,5 @@ push_swap
 */*.o
 obj/
 libft/
+visualizer
+checker_linux

@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:48:57 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/22 16:29:31 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/22 19:36:57 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ static int	test(t_a *a, int rank, size_t len_a)
 	i = 0;
 	j = 0;
 	a[a->len->a].rank = -1;
-	printf("\033[0;35m");
-	tab_print(a, a->len->total);
-	printf("\033[0m\n");
+	// printf("\033[0;35m");
+	// tab_print(a, a->len->total);
+	// printf("\033[0m\n");
 	if ((size_t)rank == a->len->total)
 	{
-		printf("\t\t\t\033[0;34m BIGGEST \033[0m");
+		// printf("\t\t\t\033[0;34m BIGGEST \033[0m");
 		while (a[i].rank != rank)
 		{
 			rank--;
@@ -51,19 +51,19 @@ static int	test(t_a *a, int rank, size_t len_a)
 		}
 		return (i + 1);
 	}
-	printf("\t\t\t\033[0;34m %d \n\033[0m", a[i].rank);
+	// printf("\t\t\t\033[0;34m %d \n\033[0m", a[i].rank);
 	while (a[i].rank != rank && j < len_a)
 	{
 		rank++;
 		i = 0;
 		while (a[i].rank != rank && i < len_a)
 		{
-			printf("\033[0;35m");
-			printf("%d vs %d\n", a[i].rank, rank);
-			printf("\033[0m");
+			// printf("\033[0;35m");
+			// printf("%d vs %d\n", a[i].rank, rank);
+			// printf("\033[0m");
 			i++;
 		}
-		printf("\n");
+		// printf("\n");
 		j++;
 	}
 	return (i);
@@ -105,6 +105,28 @@ static int	test(t_a *a, int rank, size_t len_a)
 // 	return (i);
 // }
 
+// static int	find_biggest_nearest(t_a *a, int rank, size_t len_a)
+// {
+// 	size_t	i;
+// 	size_t	j;
+// 	int		biggest;
+
+// 	i = 0;
+// 	j = 0;
+// 	biggest = 0;
+// 	while (i < len_a)
+// 	{
+// 		if (a[i].rank > biggest && a[i].rank < rank)
+// 		{
+// 			j = i;
+// 			biggest = a[i].rank;
+// 		}
+// 		i++;
+// 	}
+// 	printf("%zu\n", j);
+// 	return (j);
+// }
+
 static t_cost	diag(t_a *b, t_cost cst)
 {
 	size_t	top_down;
@@ -114,24 +136,24 @@ static t_cost	diag(t_a *b, t_cost cst)
 	top_down = (*b).cost.ra + (*b).cost.rrb;
 	down_top = (*b).cost.rra + (*b).cost.rb;
 	total = cst.ra + cst.rb + cst.rra + cst.rrb;
-	printf("\t\\%zu\t/%zu\t%zu\n", top_down, down_top, total);
+	// printf("\t\\%zu\t/%zu\t%zu\n", top_down, down_top, total);
 	if (total > top_down && top_down < down_top)
 	{
-		printf("\tA\n\n");
+		// printf("\tA\n\n");
 		ft_bzero(&cst, sizeof(t_cost));
 		cst.ra = (*b).cost.ra;
 		cst.rrb = (*b).cost.rrb;
 	}
 	else if (total > down_top && down_top < top_down)
 	{
-		printf("\t\tB\n\n");
+		// printf("\t\tB\n\n");
 		ft_bzero(&cst, sizeof(t_cost));
 		cst.rra = (*b).cost.rra;
 		cst.rb = (*b).cost.rb;
 	}
 	else if (top_down > total && down_top > total)
 	{
-		printf("\t\t\tC\n\n");
+		// printf("\t\t\tC\n\n");
 		return (cst);
 	}
 	return (cst);
@@ -180,7 +202,7 @@ static t_cost justice(t_a *b)
 		tmp.rra = 0;
 		tmp.rrb = 0;
 	}
-	printf("%d\n", b[0].value);
+	// printf("%d\n", b[0].value);
 	return (diag(b, tmp));
 }
 
@@ -222,14 +244,14 @@ void	compact_rr(t_a *b, size_t len_b)
 	{
 		while (b[i].cost.ra && b[i].cost.rb)
 		{
-			printf("\033[1;32m%d compact rr\033[0m\n", b[i].value);
+			// printf("\033[1;32m%d compact rr\033[0m\n", b[i].value);
 			b[i].cost.ra--;
 			b[i].cost.rb--;
 			b[i].cost.rr++;
 		}
 		while (b[i].cost.rra && b[i].cost.rrb)
 		{
-			printf("\033[1;32m%d compact rrr\033[0m\n", b[i].value);
+			// printf("\033[1;32m%d compact rrr\033[0m\n", b[i].value);
 			b[i].cost.rra--;
 			b[i].cost.rrb--;
 			b[i].cost.rrr++;

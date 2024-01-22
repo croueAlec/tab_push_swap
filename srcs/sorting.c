@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:14:14 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/22 10:42:19 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/22 17:52:03 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@
 // 		return (0);
 // }
 
-static int	is_list_sorted(t_a *tab)
+int	is_list_sorted(t_a *tab, size_t list_length)
 {
 	size_t	len;
 	size_t	i;
 
 	i = 0;
 	// len = tab[0].length;
-	len = 3;
+	len = list_length;
 	while (i < len - 1)
 	{
 		if (tab[i].value > tab[i + 1].value)
@@ -41,7 +41,7 @@ static int	is_list_sorted(t_a *tab)
 
 void	sort_three(t_a *tab, size_t length)
 {
-	while (!is_list_sorted(tab))
+	while (!is_list_sorted(tab, 3))
 	{
 		if (tab[0].value > tab[1].value)
 			swap(tab, 'a');
