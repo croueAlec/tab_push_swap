@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:34:19 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/19 13:42:40 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:40:01 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	set_rank(t_a *tab)
 	size_t	i;
 
 	i =0;
-	while (i < tab[0].length)
+	while (i < tab[0].len->total)
 	{
 		tab[i].rank = -1;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:48:57 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/19 19:25:34 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:42:56 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,8 +168,8 @@ void	define_cost(t_a *a, t_a *b, size_t len_b)
 	{
 		b[i].cost.rb = i;
 		b[i].cost.rrb = len_b - i;
-		b[i].cost.ra = a_rotate_cost(a, b[i].rank, a[0].length);
-		b[i].cost.rra = a[0].length - b[i].cost.ra;
+		b[i].cost.ra = a_rotate_cost(a, b[i].rank, a[0].len->a);
+		b[i].cost.rra = a[0].len->a - b[i].cost.ra;
 		i++;
 	}
 	compare_cost(b, len_b);

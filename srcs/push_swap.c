@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/19 19:39:15 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/22 11:12:25 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	tab_print(t_a *tab, size_t len)
 	i = 0;
 	while (i < len)
 	{
-		printf("%d (%d) [%zu-%zu]\n", tab[i].value, tab[i].rank, tab[i].length, tab[i].length_total);
+		printf("%d (%d) [%zu-%zu][%zu]\n", tab[i].value, tab[i].rank, tab[i].len->a, tab[i].len->b, tab[i].len->total);
 		i++;
 	}
 }
@@ -58,6 +58,29 @@ int	basic_check(t_a *a, size_t list_length)
 	return (1);
 }
 
+static t_len	*define_len_struct(t_a *a, t_a *b, size_t list_length)
+{
+	t_len	*len;
+	size_t	i;
+
+	i = 0;
+	if (!a || !b)
+		return (NULL);
+	len = ft_calloc(1, sizeof(t_len));
+	if (!len)
+		return (NULL);
+	while (i < list_length)
+	{
+		a[i].len = len;
+		b[i].len = len;
+		i++;
+	}
+	a->len->a = list_length;
+	b->len->b = 0;
+	a->len->total = list_length;
+	return (len);
+}
+
 int	main(int argc, char *argv[])
 {
 	char	*str;
@@ -76,20 +99,20 @@ int	main(int argc, char *argv[])
 	free(tmp);
 	a = make_a(str, list_length);
 	b = make_b(list_length);
-	if (!a || !b || !basic_check(a, list_length))
+	if (!define_len_struct(a, b, list_length) || !basic_check(a, list_length))
 		return (free(a), free(b), 0);
 	check_rank(a, list_length);
 	move_b(a, b, list_length);
-	sort_three(a, a[0].length);
-	tab_print(a, a[0].length);
+	sort_three(a, a[0].len->a);
+	tab_print(a, a[0].len->a);
 	printf("\n[\n");
-	tab_print(b, b[0].length);
+	tab_print(b, b[0].len->b);
 	printf("]\n\n");
 	// define_cost(a, b, b[0].length);
 	// print_cost(b, b[0].length);
-	apply_cost(a, b, a[0].length, b[0].length);
-	tab_print(a, a[0].length);
-	return (free(a), free(b), 0);
+	apply_cost(a, b, a[0].len->a, b[0].len->b);
+	tab_print(a, a[0].len->a);
+	return (free(a->len), free(a), free(b), 0);
 }
 
 /*

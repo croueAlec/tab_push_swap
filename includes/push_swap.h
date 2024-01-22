@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:26:34 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/19 19:38:19 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/22 11:21:58 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,18 @@ typedef struct s_cost
 	size_t		total;
 }	t_cost;
 
+typedef struct	s_len
+{
+	size_t		a;
+	size_t		b;
+	size_t		total;
+}	t_len;
+
 typedef struct s_a
 {
 	int				value;
 	int				rank;
-	size_t			length;
-	size_t			length_total;
+	struct s_len	*len;
 	struct s_cost	cost;
 }	t_a;
 
@@ -47,6 +53,7 @@ void	check_rank(t_a *tab, size_t length);
 void	define_cost(t_a *a, t_a *b, size_t len_b);
 /* push_swap.c */
 void	tab_print(t_a *tab, size_t len);
+void	print_cost(t_a *b, size_t len);
 /* parsing.c */
 char	*ft_jointab(char **tab, size_t i, int length);
 void	rprint(char *str);
@@ -57,7 +64,8 @@ t_a		*make_b(size_t len);
 void	swap(t_a *tab, char c);
 void	super_swap(t_a *a, t_a *b);
 void	first_push(t_a *a, t_a *b);
-int		push(t_a *src, t_a *dest, size_t len, char c);
+int		push_b(t_a *a, t_a *b, size_t len, char c);
+int		push_a(t_a *b, t_a *a, size_t len, char c);
 /* rotate.c */
 void	rotate(t_a *tab, size_t len, char c);
 void	reverse_rotate(t_a *tab, size_t len, char c);

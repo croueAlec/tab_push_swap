@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:20:48 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/19 13:43:04 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:29:09 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ t_a	*make_a(char *str, size_t len)
 		if (!(ln <= INT_MAX && ln >= INT_MIN) || index == 0)
 			return (rprint("invalid number"), NULL);
 		tab[i - 1].value = (int)ln;
-		tab[i - 1].length_total = len;
-		tab[i - 1].length = len;
 		str += index;
 	}
 	// tab_print(tab, len);
