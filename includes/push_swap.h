@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:26:34 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/22 17:52:23 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/23 15:36:29 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	check_rank(t_a *tab, size_t length);
 /* cost.c */
 void	define_cost(t_a *a, t_a *b, size_t len_b);
 /* push_swap.c */
-// void	tab_print(t_a *tab, size_t len);
+void	tab_print(t_a *tab, size_t len);
 void	print_cost(t_a *b, size_t len);
 /* parsing.c */
 char	*ft_jointab(char **tab, size_t i, int length);

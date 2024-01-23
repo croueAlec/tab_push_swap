@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:48:57 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/22 19:36:57 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/23 15:53:38 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,47 +27,46 @@
 // 	return (i);
 // }
 
-static int	test(t_a *a, int rank, size_t len_a)
-{
-	size_t	i;
-	size_t	j;
+// static int	test(t_a *a, int rank, size_t len_a)
+// {
+// 	size_t	i;
+// 	size_t	j;
 
-	// rank++;
-	i = 0;
-	j = 0;
-	a[a->len->a].rank = -1;
-	// printf("\033[0;35m");
-	// tab_print(a, a->len->total);
-	// printf("\033[0m\n");
-	if ((size_t)rank == a->len->total)
-	{
-		// printf("\t\t\t\033[0;34m BIGGEST \033[0m");
-		while (a[i].rank != rank)
-		{
-			rank--;
-			i = 0;
-			while (a[i].rank != rank && i < len_a)
-				i++;
-		}
-		return (i + 1);
-	}
-	// printf("\t\t\t\033[0;34m %d \n\033[0m", a[i].rank);
-	while (a[i].rank != rank && j < len_a)
-	{
-		rank++;
-		i = 0;
-		while (a[i].rank != rank && i < len_a)
-		{
-			// printf("\033[0;35m");
-			// printf("%d vs %d\n", a[i].rank, rank);
-			// printf("\033[0m");
-			i++;
-		}
-		// printf("\n");
-		j++;
-	}
-	return (i);
-}
+// 	// rank++;
+// 	i = 0;
+// 	j = 0;
+// 	a[a->len->a].rank = -1;
+// 	// printf("\033[0;35m");
+// 	// tab_print(a, a->len->total);
+// 	// printf("\033[0m\n");
+// 	if ((size_t)rank == a->len->total)
+// 	{
+// 		// printf("\t\t\t\033[0;34m BIGGEST \033[0m");
+// 		while (a[i].rank != rank)
+// 		{
+// 			rank--;
+// 			i = 0;
+// 			while (a[i].rank != rank && i < len_a)
+// 				i++;
+// 		}
+// 		return (i + 1);
+// 	}
+// 	while (a[i].rank != rank && j < len_a)
+// 	{
+// 		rank++;
+// 		i = 0;
+// 		while (a[i].rank != rank && i < len_a)
+// 		{
+// 			// printf("\033[0;35m");
+// 			// printf("%d vs %d\n", a[i].rank, rank);
+// 			// printf("\033[0m");
+// 			i++;
+// 		}
+// 		// printf("\n");
+// 		j++;
+// 	}
+// 	return (i);
+// }
 
 // static int	test_deux(t_a *a, size_t len_a)
 // {
@@ -105,26 +104,62 @@ static int	test(t_a *a, int rank, size_t len_a)
 // 	return (i);
 // }
 
-// static int	find_biggest_nearest(t_a *a, int rank, size_t len_a)
+static int	test(t_a *a, int rank, size_t len_a)
+{
+	size_t	i;
+	size_t	j;
+	int		biggest;
+
+	i = 0;
+	j = 0;
+	a[a->len->a].rank = -1;
+	biggest = -1;
+	while (i < len_a)
+	{
+		if ((a[i].rank < biggest || biggest == -1) && a[i].rank > rank)
+		{
+			j = i;
+			biggest = a[i].rank;
+		}
+		i++;
+	}
+	if (biggest == -1)
+	{
+		i = 0;
+		biggest = a[i].rank;
+		while (i < len_a)
+		{
+			if (a[i].rank > biggest)
+			{
+				j = i;
+				biggest = a[i].rank;
+			}
+			i++;
+		}
+		j++;
+	}
+	return (j);
+}
+
+// static int midas(t_a *a, int rank, size_t len_a)
 // {
 // 	size_t	i;
 // 	size_t	j;
-// 	int		biggest;
 
 // 	i = 0;
 // 	j = 0;
-// 	biggest = 0;
-// 	while (i < len_a)
+// 	a[a->len->a].rank = -1;
+// 	while ((size_t)rank <= a->len->total)
 // 	{
-// 		if (a[i].rank > biggest && a[i].rank < rank)
+// 		rank++;
+// 		i = 0;
+// 		while (a[i].rank != rank && i < len_a)
 // 		{
-// 			j = i;
-// 			biggest = a[i].rank;
+// 			i++;
 // 		}
-// 		i++;
+// 		j++;
 // 	}
-// 	printf("%zu\n", j);
-// 	return (j);
+// 	return (i);
 // }
 
 static t_cost	diag(t_a *b, t_cost cst)
@@ -271,6 +306,8 @@ void	define_cost(t_a *a, t_a *b, size_t len_b)
 		b[i].cost.rb = i;
 		b[i].cost.rrb = len_b - i;
 		b[i].cost.ra = test(a, b[i].rank, a[0].len->a);
+		// printf("\t%zu\n", b[i].cost.ra);
+		// sleep(1);
 		b[i].cost.rra = a[0].len->a - b[i].cost.ra;
 		b[i].cost.rr = 0;
 		b[i].cost.rrr = 0;
@@ -279,3 +316,5 @@ void	define_cost(t_a *a, t_a *b, size_t len_b)
 	compare_cost(b, len_b);
 	compact_rr(b, len_b);
 }
+
+// 10 8 7 5 9 14 3 6 20 15 19 12 2 1 11 13 16 4 18 17

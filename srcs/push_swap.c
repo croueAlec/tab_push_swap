@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/22 17:55:23 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/23 16:33:46 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 #include <stdio.h>
 
-void	tab_print(t_a *tab, size_t len)
-{
-	size_t i;
+// void	tab_print(t_a *tab, size_t len)
+// {
+// 	size_t i;
 
-	i = 0;
-	while (i < len)
-	{
-		printf("%d (%d) [%zu-%zu][%zu]\n", tab[i].value, tab[i].rank, tab[i].len->a, tab[i].len->b, tab[i].len->total);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < len)
+// 	{
+// 		printf("%d (%d) [%zu-%zu][%zu]\n", tab[i].value, tab[i].rank, tab[i].len->a, tab[i].len->b, tab[i].len->total);
+// 		i++;
+// 	}
+// }
 
 // void	print_cost(t_a *b, size_t len)
 // {
 // 	size_t	i;
 
 // 	i = 0;
-// 	// printf("|val| ra| rb|rra|rrb| rr|rrr|tot|\n");
+// 	printf("|val| ra| rb|rra|rrb| rr|rrr|tot|\n");
 // 	while (i < len)
 // 	{
-// 		// printf("|%3d| %zu | %zu | %zu | %zu | %zu | %zu | %zu |\n", b[i].value,  b[i].cost.ra, b[i].cost.rb, b[i].cost.rra, b[i].cost.rrb ,b[i].cost.rr, b[i].cost.rrr, b[i].cost.total);
+// 		printf("|%3d| %zu | %zu | %zu | %zu | %zu | %zu | %zu |\n", b[i].value,  b[i].cost.ra, b[i].cost.rb, b[i].cost.rra, b[i].cost.rrb ,b[i].cost.rr, b[i].cost.rrr, b[i].cost.total);
 // 		i++;
 // 	}
 	
@@ -90,15 +90,18 @@ void	right_side_up(t_a *a, size_t len_a)
 	i = 0;
 	while (a[i].rank != 1)
 		i++;
-	if (i > (a->len->total / 2))
+	// printf("%d\n%d\t%ld\t%ld\n", a[0].value, a[i].value, i, 2*i);
+	if (a->len->total - i < i)
 	{
-		while (i--)
+		printf("test1\n");
+		while (--i)
 		{
 			reverse_rotate(a, len_a, 'a');
 		}
 	}
 	else
 	{
+		printf("\ttest2\n");
 		while (i--)
 		{
 			rotate(a, len_a, 'a');
@@ -137,7 +140,7 @@ int	main(int argc, char *argv[])
 	// print_cost(b, b[0].length);
 	apply_cost(a, b, a[0].len->a, b[0].len->b);
 	right_side_up(a, a->len->a);
-	tab_print(a, a[0].len->a);
+	// tab_print(a, a[0].len->a);
 	return (free(a->len), free(a), free(b), 0);
 }
 
