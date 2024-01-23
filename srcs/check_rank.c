@@ -6,14 +6,11 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:34:19 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/22 10:40:01 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/23 19:31:01 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
-
-#include <stdio.h>
 
 static int	find_smallest_int(t_a *tab, size_t length)
 {
@@ -30,7 +27,6 @@ static int	find_smallest_int(t_a *tab, size_t length)
 		if (tmp > tab[i].value && tab[i].rank == -1)
 		{
 			tmp = tab[i].value;
-			// printf("\t\t%d\n", tmp);
 		}
 		i++;
 	}
@@ -41,7 +37,7 @@ static void	set_rank(t_a *tab)
 {
 	size_t	i;
 
-	i =0;
+	i = 0;
 	while (i < tab[0].len->total)
 	{
 		tab[i].rank = -1;
@@ -60,7 +56,6 @@ void	check_rank(t_a *tab, size_t length)
 	while (i < length)
 	{
 		tmp = find_smallest_int(tab, length);
-		// printf("\tsmall : %d\n", tmp);
 		j = 0;
 		while (j < length)
 		{

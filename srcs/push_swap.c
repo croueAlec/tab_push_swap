@@ -6,39 +6,11 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/23 16:33:46 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/23 19:32:29 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-#include <stdio.h>
-
-// void	tab_print(t_a *tab, size_t len)
-// {
-// 	size_t i;
-
-// 	i = 0;
-// 	while (i < len)
-// 	{
-// 		printf("%d (%d) [%zu-%zu][%zu]\n", tab[i].value, tab[i].rank, tab[i].len->a, tab[i].len->b, tab[i].len->total);
-// 		i++;
-// 	}
-// }
-
-// void	print_cost(t_a *b, size_t len)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	printf("|val| ra| rb|rra|rrb| rr|rrr|tot|\n");
-// 	while (i < len)
-// 	{
-// 		printf("|%3d| %zu | %zu | %zu | %zu | %zu | %zu | %zu |\n", b[i].value,  b[i].cost.ra, b[i].cost.rb, b[i].cost.rra, b[i].cost.rrb ,b[i].cost.rr, b[i].cost.rrr, b[i].cost.total);
-// 		i++;
-// 	}
-	
-// }
 
 int	basic_check(t_a *a, size_t list_length)
 {
@@ -46,7 +18,7 @@ int	basic_check(t_a *a, size_t list_length)
 		return (0);
 	if (list_length == 2)
 	{
-		if(a[0].value > a[1].value)
+		if (a[0].value > a[1].value)
 			swap(a, 'a');
 		return (0);
 	}
@@ -88,23 +60,24 @@ void	right_side_up(t_a *a, size_t len_a)
 	size_t	i;
 
 	i = 0;
+	if (a[0].rank == 1)
+		return ;
 	while (a[i].rank != 1)
 		i++;
-	// printf("%d\n%d\t%ld\t%ld\n", a[0].value, a[i].value, i, 2*i);
-	if (a->len->total - i < i)
+	if (!a->len->total % 2)
+		a->len->total++;
+	if (i <= (a->len->total) / 2)
 	{
-		printf("test1\n");
-		while (--i)
+		while (i--)
 		{
-			reverse_rotate(a, len_a, 'a');
+			rotate(a, len_a, 'a');
 		}
 	}
 	else
 	{
-		printf("\ttest2\n");
-		while (i--)
+		while (i++ < a->len->total)
 		{
-			rotate(a, len_a, 'a');
+			reverse_rotate(a, len_a, 'a');
 		}
 	}
 }
@@ -118,7 +91,7 @@ int	main(int argc, char *argv[])
 	t_a		*b;
 
 	if (argc == 1)
-		return (rprint("too few arguments"), 0);
+		return (0);
 	tmp = ft_jointab(&argv[1], 0, 0);
 	if (!tmp)
 		return (0);
@@ -132,38 +105,7 @@ int	main(int argc, char *argv[])
 	check_rank(a, list_length);
 	move_b(a, b, list_length);
 	sort_three(a, a[0].len->a);
-	// tab_print(a, a[0].len->a);
-	// printf("\n[\n");
-	// tab_print(b, b[0].len->b);
-	// printf("]\n\n");
-	// define_cost(a, b, b[0].length);
-	// print_cost(b, b[0].length);
-	apply_cost(a, b, a[0].len->a, b[0].len->b);
+	apply_cost(a, b, 0, b[0].len->b);
 	right_side_up(a, a->len->a);
-	// tab_print(a, a[0].len->a);
 	return (free(a->len), free(a), free(b), 0);
 }
-
-/*
-	reverse_rotate(a, list_length, 'a');
-	printf("========================\n");
-	tab_print(a, a[0].length);
-	rotate(a, list_length, 'a');
-	printf("========================\n");
-	tab_print(a, a[0].length);
-	// first_push(a, b);
-	push(a, b, a[0].length, 'b');
-	printf("========================\n");
-	tab_print(a, list_length);
-	printf("-------------------------\n");
-	tab_print(b, list_length);
-	printf("-------------------------\n");
-	push(a, b, list_length, 'b');
-	tab_print(a, list_length);
-	printf("-------------------------\n");
-	tab_print(b, list_length);
-	// push(b, a, list_length, 0);
-	// push(b, a, list_length, 0);
-	// printf("|||||||||||||||||||||||||||\n");
-	// tab_print(b, list_length);
-*/

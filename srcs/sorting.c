@@ -6,21 +6,11 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:14:14 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/23 13:12:12 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/23 19:31:24 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-#include <stdio.h>
-
-// int	is_node_sorted(t_a *node, t_a *next)
-// {
-// 	if (node->value < next->value)
-// 		return (1);
-// 	else
-// 		return (0);
-// }
 
 int	is_list_sorted(t_a *tab, size_t list_length)
 {
@@ -28,7 +18,6 @@ int	is_list_sorted(t_a *tab, size_t list_length)
 	size_t	i;
 
 	i = 0;
-	// len = tab[0].length;
 	len = list_length;
 	while (i < len - 1)
 	{
@@ -73,5 +62,3 @@ void	move_b(t_a *tab, t_a *b, size_t length)
 		i++;
 	}
 }
-
-

@@ -6,10 +6,9 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:26:34 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/23 15:36:29 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/23 19:29:54 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -30,7 +29,7 @@ typedef struct s_cost
 	size_t		total;
 }	t_cost;
 
-typedef struct	s_len
+typedef struct s_len
 {
 	size_t		a;
 	size_t		b;
@@ -46,14 +45,11 @@ typedef struct s_a
 }	t_a;
 
 /* apply_cost.c */
-void	apply_cost(t_a *a, t_a *b, size_t len_a, size_t len_b);
+void	apply_cost(t_a *a, t_a *b, size_t i, size_t len_b);
 /* check_rank.c */
 void	check_rank(t_a *tab, size_t length);
 /* cost.c */
 void	define_cost(t_a *a, t_a *b, size_t len_b);
-/* push_swap.c */
-void	tab_print(t_a *tab, size_t len);
-void	print_cost(t_a *b, size_t len);
 /* parsing.c */
 char	*ft_jointab(char **tab, size_t i, int length);
 void	rprint(char *str);

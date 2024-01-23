@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:03:44 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/18 16:36:49 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/23 19:29:01 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,3 @@ void	rprint(char *str)
 	write(2, str, ft_strlen(str));
 	write(2, "\n", 1);
 }
-
-/* 
-	Here we parse the values we get as main arguments.
-	They joined and then trimmed to be interpreted by the tab_manager.
-
-	Duplicates check is done using check_tab
- */

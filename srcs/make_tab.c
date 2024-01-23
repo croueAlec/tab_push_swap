@@ -6,14 +6,11 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:20:48 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/22 10:29:09 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/23 19:34:02 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-#include <stdio.h>
-
 
 static size_t	num_len(long n)
 {
@@ -57,14 +54,12 @@ static int	check_tab(t_a *tab, size_t len)
 	i = 0;
 	if (!tab)
 		return (0);
-	while (i < len - 1) // retirer le - 1 si probleme de check
+	while (i < len - 1)
 	{
 		value = tab[i].value;
-		// printf("\ncheck %d :", value);
 		j = i + 1;
 		while (j < len)
 		{
-			// printf(" %d", temp->value);
 			if (value == tab[j].value)
 				return (rprint("duplicate number"), 0);
 			j++;
@@ -85,7 +80,7 @@ t_a	*make_a(char *str, size_t len)
 	i = 0;
 	tab = ft_calloc(len, sizeof(t_a));
 	if (!tab)
-		return (free(str), perror("Malloc fail tab"), NULL);
+		return (free(str), rprint("Malloc fail tab"), NULL);
 	tmp = str;
 	while (i++ < len)
 	{
@@ -96,7 +91,6 @@ t_a	*make_a(char *str, size_t len)
 		tab[i - 1].value = (int)ln;
 		str += index;
 	}
-	// tab_print(tab, len);
 	if (!check_tab(tab, len))
 		return (free(tmp), NULL);
 	return (free(tmp), tab);
@@ -112,4 +106,3 @@ t_a	*make_b(size_t len)
 	b[0].rank = -2;
 	return (b);
 }
-
