@@ -1,7 +1,7 @@
 srcs/tab_manager.c
 push_swap
 */*.o
-obj/
+objs/
 libft/
 visualizer/
 checker_linux
