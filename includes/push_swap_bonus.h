@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:10:49 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/24 14:29:13 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/24 19:53:35 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ typedef struct s_a
 }	t_a;
 
 /* checker_bonus.c */
-void	apply_checker(char **instructions, t_a *a, t_a *b);
+int	apply_checker(char **instructions, t_a *a, t_a *b);
+/* make_tab_bonus.c */
+t_a		*make_a(char *str, size_t len);
+t_a		*make_b(size_t len);
 /* operators_bonus.c */
 void	swap(t_a *tab);
 void	super_swap(t_a *a, t_a *b);

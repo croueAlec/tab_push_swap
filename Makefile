@@ -6,7 +6,7 @@
 #    By: acroue <acroue@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/11 11:51:52 by acroue            #+#    #+#              #
-#    Updated: 2024/01/24 18:32:41 by acroue           ###   ########.fr        #
+#    Updated: 2024/01/24 18:37:57 by acroue           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,11 +120,11 @@ fcleanlib:
 	@make fclean -C $(LIBFT_DIR) $(LIB_FLAGS)
 	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
 
-relib: fcleanlib $(LIBFT) $(LIBMLX)
+relib: fcleanlib $(LIBFT)
 
 bonus: $(BONUS)
 
-$(BONUS): $(LIBFT) $(LIBMLX) $(BONUS_OBJ)
+$(BONUS): $(LIBFT) $(BONUS_OBJ)
 	@echo "$(GREEN)* Assembling $(BWHITE)$@$(DEFAULT)"
 	@$(CC) $(CFLAGS) $(BONUS_OBJ) $(LIB) -o $(BONUS)
 

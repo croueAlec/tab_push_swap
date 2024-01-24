@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/24 14:24:37 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/24 19:54:52 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,29 @@ static t_len	*define_len_struct(t_a *a, t_a *b, size_t list_length)
 
 int	check_instructions(char *line)
 {
-	if (ft_memcmp(line, "sa\n", 3))
+	if (!line)
 		return (0);
-	if (ft_memcmp(line, "sb\n", 3))
+	if (ft_memcmp(line, "sa\n", 3) == 0)
 		return (0);
-	if (ft_memcmp(line, "ss\n", 3))
+	if (ft_memcmp(line, "sb\n", 3) == 0)
 		return (0);
-	if (ft_memcmp(line, "pa\n", 3))
+	if (ft_memcmp(line, "ss\n", 3) == 0)
 		return (0);
-	if (ft_memcmp(line, "pb\n", 3))
+	if (ft_memcmp(line, "pa\n", 3) == 0)
 		return (0);
-	if (ft_memcmp(line, "ra\n", 3))
+	if (ft_memcmp(line, "pb\n", 3) == 0)
 		return (0);
-	if (ft_memcmp(line, "rb\n", 3))
+	if (ft_memcmp(line, "ra\n", 3) == 0)
 		return (0);
-	if (ft_memcmp(line, "rr\n", 3))
+	if (ft_memcmp(line, "rb\n", 3) == 0)
 		return (0);
-	if (ft_memcmp(line, "rra\n", 4))
+	if (ft_memcmp(line, "rr\n", 3) == 0)
 		return (0);
-	if (ft_memcmp(line, "rrb\n", 4))
+	if (ft_memcmp(line, "rra\n", 4) == 0)
 		return (0);
-	if (ft_memcmp(line, "rrr\n", 4))
+	if (ft_memcmp(line, "rrb\n", 4) == 0)
+		return (0);
+	if (ft_memcmp(line, "rrr\n", 4) == 0)
 		return (0);
 	return (1);
 }
@@ -82,18 +84,18 @@ char	**getting_line(void)
 {
 	char	*line;
 	char	*res;
-	int		fd;
 	char	**res_tab;
 
-	fd = open(STDIN_FILENO, O_RDONLY);
-	if (fd < 1)
-		return (NULL);
-	res = get_next_line(fd);
-	while (res)
+	res = get_next_line(STDIN_FILENO);
+	if (check_instructions(res))
+		return (free(res), (void)ft_putstr("Error"), NULL);
+	while (1)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(STDIN_FILENO);
+		if (!line)
+			break ;
 		if (check_instructions(line))
-			return (free(res), (void)ft_putstr("Error"), NULL);
+			return (free(line), free(res), (void)ft_putstr("Error"), NULL);
 		res = ft_sep_join(res, line, "|");
 		free(line);
 	}
@@ -119,9 +121,10 @@ int	main(int argc, char *argv[])
 	free(tmp);
 	a = make_a(str, list_length);
 	b = make_b(list_length);
-	if (!define_len_struct(a, b, list_length) || !basic_check(a, list_length))
+	if (!define_len_struct(a, b, list_length))
 		return (free(a), free(b), 0);
-	apply_checker(getting_line(), a, b);
+	if (!apply_checker(getting_line(), a, b))
+		return (free(a->len), free(a), free(b), 0);
 	if (b->len->b != 0 || !is_list_sorted(a, a->len->a))
 		return (ft_putendl_fd("KO", 1), free(a->len), free(a), free(b), 0);
 	return (free(a->len), free(a), free(b), 0);

@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:53:48 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/24 14:15:36 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/24 19:54:29 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,17 @@ static void	apply_instructions(char *line, t_a *a, t_a *b)
 		reverse_r_and_b(a, b, a->len->a, b->len->b);
 }
 
-void	apply_checker(char **instructions, t_a *a, t_a *b)
+int	apply_checker(char **instructions, t_a *a, t_a *b)
 {
 	size_t	i;
 
 	i = 0;
+	if (!instructions)
+		return (0);
 	while (instructions[i])
 	{
 		apply_instructions(instructions[i], a, b);
 		i++;
 	}
+	return (1);
 }
