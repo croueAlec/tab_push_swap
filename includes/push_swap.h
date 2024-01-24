@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:26:34 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/23 19:29:54 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/24 12:44:20 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ typedef struct s_a
 void	apply_cost(t_a *a, t_a *b, size_t i, size_t len_b);
 /* check_rank.c */
 void	check_rank(t_a *tab, size_t length);
+/* cost_compare.c */
+void	compare_cost(t_a *b, size_t len_b);
+size_t	sum_total(t_cost c);
 /* cost.c */
 void	define_cost(t_a *a, t_a *b, size_t len_b);
 /* parsing.c */

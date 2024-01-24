@@ -6,7 +6,7 @@
 #    By: acroue <acroue@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/11 11:51:52 by acroue            #+#    #+#              #
-#    Updated: 2024/01/22 11:18:38 by acroue           ###   ########.fr        #
+#    Updated: 2024/01/24 12:44:37 by acroue           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -g -I$(INCLUDES)
 RM = rm -rf
 INCLUDES = includes/
 SRC_DIR = srcs
-SRC = ${addprefix ${SRC_DIR}/, push_swap.c parsing.c make_tab.c operators.c rotate.c check_rank.c sorting.c cost.c apply_cost.c}
+SRC = ${addprefix ${SRC_DIR}/, push_swap.c parsing.c make_tab.c operators.c rotate.c check_rank.c sorting.c cost.c apply_cost.c cost_compare.c}
 OBJ_DIR = obj
 OBJ = ${addprefix ${OBJ_DIR}/, ${SRC:.c=.o}}
 LIB_DIR = libft
