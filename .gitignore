@@ -3,5 +3,6 @@ push_swap
 */*.o
 obj/
 libft/
-visualizer
+visualizer/
 checker_linux
+complexity/
