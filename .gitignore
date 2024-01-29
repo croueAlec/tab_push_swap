@@ -1,8 +1,8 @@
 srcs/tab_manager.c
 push_swap
+*/*.a
 */*.o
 objs/
-libft/
 visualizer/
 checker_linux
 complexity/

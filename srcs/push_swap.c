@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/23 19:32:29 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/29 15:23:00 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,14 @@ void	right_side_up(t_a *a, size_t len_a)
 	}
 }
 
+void	free_all(t_a *a, t_a *b, t_len *len)
+{
+	if (len)
+		free(len);
+	free(a);
+	free(b);
+}
+
 int	main(int argc, char *argv[])
 {
 	char	*str;
@@ -93,19 +101,19 @@ int	main(int argc, char *argv[])
 	if (argc == 1)
 		return (0);
 	tmp = ft_jointab(&argv[1], 0, 0);
-	if (!tmp)
-		return (0);
 	str = ft_strtrim(tmp, " ");
+	if (!tmp || !str)
+		return (free(tmp), 0);
 	list_length = ft_count_words(str, 32);
 	free(tmp);
 	a = make_a(str, list_length);
 	b = make_b(list_length);
 	if (!define_len_struct(a, b, list_length) || !basic_check(a, list_length))
-		return (free(a), free(b), 0);
+		return (free_all(a, b, b->len), 0);
 	check_rank(a, list_length);
 	move_b(a, b, list_length);
 	sort_three(a, a[0].len->a);
 	apply_cost(a, b, 0, b[0].len->b);
 	right_side_up(a, a->len->a);
-	return (free(a->len), free(a), free(b), 0);
+	return (free_all(a, b, a->len), 0);
 }
