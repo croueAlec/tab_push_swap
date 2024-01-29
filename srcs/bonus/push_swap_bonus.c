@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/24 19:54:52 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/29 10:58:01 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,11 @@ int	main(int argc, char *argv[])
 	a = make_a(str, list_length);
 	b = make_b(list_length);
 	if (!define_len_struct(a, b, list_length))
-		return (free(a), free(b), 0);
+		return (free_all(a, b, NULL), 0);
 	if (!apply_checker(getting_line(), a, b))
-		return (free(a->len), free(a), free(b), 0);
+		return (free_all(a, b, a->len), 0);
 	if (b->len->b != 0 || !is_list_sorted(a, a->len->a))
-		return (ft_putendl_fd("KO", 1), free(a->len), free(a), free(b), 0);
-	return (free(a->len), free(a), free(b), 0);
+		return (ft_putendl_fd("KO", 1), free_all(a, b, a->len), 0);
+	ft_putendl_fd("OK", 1);
+	return (free_all(a, b, a->len), 0);
 }

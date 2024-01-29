@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:20:48 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/24 19:39:45 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/29 11:07:28 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ t_a	*make_a(char *str, size_t len)
 		ln = ft_atol(str);
 		index = move_index(str, ln);
 		if (!(ln <= INT_MAX && ln >= INT_MIN) || index == 0)
-			return ((void)ft_putstr("Error"), NULL);
+			return ((void)ft_putstr("Error"), free(tab), free(tmp), NULL);
 		tab[i - 1].value = (int)ln;
 		str += index;
 	}
 	if (!check_tab(tab, len))
-		return (free(tmp), NULL);
+		return (free(tmp), free(tab), NULL);
 	return (free(tmp), tab);
 }
 

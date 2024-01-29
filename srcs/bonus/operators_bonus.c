@@ -6,17 +6,17 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:26:39 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/24 14:08:47 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/29 10:21:09 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-void	swap(t_a *tab)
+void	swap(t_a *tab, size_t len)
 {
 	t_a	tmp;
 
-	if (!tab)
+	if (!tab || len == 0)
 		return ;
 	tmp = tab[0];
 	tab[0] = tab[1];
@@ -25,8 +25,8 @@ void	swap(t_a *tab)
 
 void	super_swap(t_a *a, t_a *b)
 {
-	swap(a);
-	swap(b);
+	swap(a, a->len->a);
+	swap(b, b->len->b);
 }
 
 int	push_b(t_a *a, t_a *b, size_t len)
