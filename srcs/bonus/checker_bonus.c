@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:53:48 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/29 10:56:33 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/29 11:19:19 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,6 @@ static void	apply_instructions(char *line, t_a *a, t_a *b)
 		reverse_rotate(b, b->len->b);
 	if (!ft_memcmp(line, "rrr\n", 4))
 		reverse_r_and_b(a, b, a->len->a, b->len->b);
-}
-#include <stdio.h>
-void	printtab(t_a *tab, size_t len)
-{
-	for (size_t i = 0; i < len; i++)
-	{
-		printf("%d\n", tab[i].value);
-	}
-	printf("\n");
 }
 
 int	apply_checker(char **instructions, t_a *a, t_a *b)
