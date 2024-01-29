@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:26:39 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/29 10:21:09 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/29 14:53:06 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	swap(t_a *tab, size_t len)
 {
 	t_a	tmp;
 
-	if (!tab || len == 0)
+	if (!tab || len <= 1)
 		return ;
 	tmp = tab[0];
 	tab[0] = tab[1];

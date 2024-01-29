@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/29 10:58:01 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/29 14:55:42 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ int	main(int argc, char *argv[])
 	if (!tmp)
 		return (0);
 	str = ft_strtrim(tmp, " ");
+	if (!str)
+		return (free(tmp), 0);
 	list_length = ft_count_words(str, 32);
 	free(tmp);
 	a = make_a(str, list_length);
@@ -127,6 +129,5 @@ int	main(int argc, char *argv[])
 		return (free_all(a, b, a->len), 0);
 	if (b->len->b != 0 || !is_list_sorted(a, a->len->a))
 		return (ft_putendl_fd("KO", 1), free_all(a, b, a->len), 0);
-	ft_putendl_fd("OK", 1);
-	return (free_all(a, b, a->len), 0);
+	return (ft_putendl_fd("OK", 1), free_all(a, b, a->len), 0);
 }
