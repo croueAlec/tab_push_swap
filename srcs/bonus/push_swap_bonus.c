@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/29 14:55:42 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/29 15:58:01 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	main(int argc, char *argv[])
 	if (!define_len_struct(a, b, list_length))
 		return (free_all(a, b, NULL), 0);
 	if (!apply_checker(getting_line(), a, b))
-		return (free_all(a, b, a->len), 0);
+		return (check_sorted_no_input(a), free_all(a, b, a->len), 0);
 	if (b->len->b != 0 || !is_list_sorted(a, a->len->a))
 		return (ft_putendl_fd("KO", 1), free_all(a, b, a->len), 0);
 	return (ft_putendl_fd("OK", 1), free_all(a, b, a->len), 0);

@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:10:49 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/29 10:56:40 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/29 16:08:43 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_a
 /* checker_bonus.c */
 int		apply_checker(char **instructions, t_a *a, t_a *b);
 void	free_all(t_a *a, t_a *b, t_len *len);
+void	check_sorted_no_input(t_a *a);
 /* make_tab_bonus.c */
 t_a		*make_a(char *str, size_t len);
 t_a		*make_b(size_t len);
@@ -44,6 +45,8 @@ int		push_b(t_a *a, t_a *b, size_t len);
 int		push_a(t_a *b, t_a *a, size_t len);
 /* parsing_bonus.c */
 char	*ft_jointab(char **tab, size_t i, int length);
+/* push_swap_bonus.c */
+int		is_list_sorted(t_a *tab, size_t list_length);
 /* rotate_bonus.c */
 void	rotate(t_a *tab, size_t len);
 void	reverse_rotate(t_a *tab, size_t len);
