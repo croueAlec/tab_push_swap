@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:53:48 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/29 16:08:30 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/29 20:33:41 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ int	apply_checker(char **instructions, t_a *a, t_a *b)
 
 	i = 0;
 	if (!instructions)
+	{
 		return (0);
+	}
 	while (instructions[i])
 	{
 		apply_instructions(instructions[i], a, b);
@@ -55,14 +57,14 @@ int	apply_checker(char **instructions, t_a *a, t_a *b)
 	return (1);
 }
 
-void	check_sorted_no_input(t_a *a)
+void	check_no_input(t_a *a, size_t *boolean)
 {
-	if (!a)
+	if (!a || *boolean == 0)
 		return ;
 	if (!is_list_sorted(a, a->len->a))
 		ft_putstr("KO");
 	else
-		ft_putstr("OK");
+		ft_putendl_fd("OK", 1);
 }
 
 void	free_all(t_a *a, t_a *b, t_len *len)

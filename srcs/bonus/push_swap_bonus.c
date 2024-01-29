@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:27:55 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/29 15:58:01 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/29 20:07:18 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_instructions(char *line)
 	return (1);
 }
 
-char	**getting_line(void)
+char	**getting_line(size_t *boolean)
 {
 	char	*line;
 	char	*res;
@@ -88,14 +88,20 @@ char	**getting_line(void)
 
 	res = get_next_line(STDIN_FILENO);
 	if (check_instructions(res))
+	{
+		*boolean = 0;
 		return (free(res), (void)ft_putstr("Error"), NULL);
+	}
 	while (1)
 	{
 		line = get_next_line(STDIN_FILENO);
 		if (!line)
 			break ;
 		if (check_instructions(line))
+		{
+			*boolean = 0;
 			return (free(line), free(res), (void)ft_putstr("Error"), NULL);
+		}
 		res = ft_sep_join(res, line, "|");
 		free(line);
 	}
@@ -125,8 +131,8 @@ int	main(int argc, char *argv[])
 	b = make_b(list_length);
 	if (!define_len_struct(a, b, list_length))
 		return (free_all(a, b, NULL), 0);
-	if (!apply_checker(getting_line(), a, b))
-		return (check_sorted_no_input(a), free_all(a, b, a->len), 0);
+	if (!apply_checker(getting_line(&list_length), a, b))
+		return (check_no_input(a, &list_length), free_all(a, b, a->len), 0);
 	if (b->len->b != 0 || !is_list_sorted(a, a->len->a))
 		return (ft_putendl_fd("KO", 1), free_all(a, b, a->len), 0);
 	return (ft_putendl_fd("OK", 1), free_all(a, b, a->len), 0);
