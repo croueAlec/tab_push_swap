@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:20:48 by acroue            #+#    #+#             */
-/*   Updated: 2024/01/29 11:11:25 by acroue           ###   ########.fr       */
+/*   Updated: 2024/01/31 10:27:55 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static size_t	move_index(char *str, long ln)
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 		j++;
+	while(str[i] == '0')
+		i++;
 	while (ft_isdigit(str[i + j]))
 		j++;
 	if (num_len(ln) != j)
